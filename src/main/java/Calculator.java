@@ -1,4 +1,4 @@
-public class CanculatorImpl implements Canculator {
+public class Calculator implements Calculable {
 
     @Override
     public int plus(int a, int b) {
