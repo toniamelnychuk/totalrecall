@@ -38,4 +38,16 @@ public class CalcTests {
                 () -> first + " + " + second + " should equal " + expectedResult);
     }
 
+    @Test
+    void test1() throws InterruptedException {
+        Thread.sleep(3000);
+        System.out.println("Test1 " + Thread.currentThread().getName());
+    }
+
+    @Test
+    void test2() throws InterruptedException {
+        Thread.sleep(1000);
+        System.out.println("Test 2! " + Thread.currentThread().getName());
+    }
+
 }
