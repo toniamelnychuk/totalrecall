@@ -6,13 +6,14 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CalcTests {
+public class CalcAddTests {
 
     @Test
     @DisplayName("Add numbers 1+2")
     void testAddNumbers1() {
         Calculator canculator = new Calculator();
         assertEquals(canculator.plus(1, 2), 3);
+        System.out.println("testAddNumbers1 " + Thread.currentThread().getName());
     }
 
     @ParameterizedTest(name = "{0} + {1} = {2}")
@@ -23,31 +24,23 @@ public class CalcTests {
             "1,  100, 101"
     })
     @DisplayName("Add numbers from csv")
-    void testAddNumbers2(int first, int second, int expectedResult) {
+    void testAddNumbers2(int first, int second, int expectedResult) throws InterruptedException {
         Calculator calculator = new Calculator();
         assertEquals(expectedResult, calculator.plus(first, second),
                 () -> first + " + " + second + " should equal " + expectedResult);
+        Thread.sleep(3000);
+        System.out.println("testAddNumbers2 " + Thread.currentThread().getName());
     }
 
     @ParameterizedTest(name = "{0} + {1} = {2}")
     @CsvFileSource(resources = "/data.csv", numLinesToSkip = 1)
     @DisplayName("Add numbers from csv file")
-    void testAddNumbers3(int first, int second, int expectedResult) {
+    void testAddNumbers3(int first, int second, int expectedResult) throws InterruptedException {
         Calculator calculator = new Calculator();
         assertEquals(expectedResult, calculator.plus(first, second),
                 () -> first + " + " + second + " should equal " + expectedResult);
-    }
-
-    @Test
-    void test1() throws InterruptedException {
-        Thread.sleep(3000);
-        System.out.println("Test1 " + Thread.currentThread().getName());
-    }
-
-    @Test
-    void test2() throws InterruptedException {
         Thread.sleep(1000);
-        System.out.println("Test 2! " + Thread.currentThread().getName());
+        System.out.println("testAddNumbers3 " + Thread.currentThread().getName());
     }
 
 }
